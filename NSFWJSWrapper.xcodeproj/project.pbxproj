@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AB08532629FA12C100023910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532529FA12C100023910 /* AppDelegate.swift */; };
-		AB08532829FA12C100023910 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532729FA12C100023910 /* SceneDelegate.swift */; };
 		AB08532A29FA12C100023910 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532929FA12C100023910 /* ViewController.swift */; };
 		AB08532D29FA12C100023910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB08532B29FA12C100023910 /* Main.storyboard */; };
 		AB08532F29FA12C600023910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB08532E29FA12C600023910 /* Assets.xcassets */; };
@@ -16,6 +15,12 @@
 		AB08533D29FA12C600023910 /* NSFWJSWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08533C29FA12C600023910 /* NSFWJSWrapperTests.swift */; };
 		AB08534729FA12C600023910 /* NSFWJSWrapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08534629FA12C600023910 /* NSFWJSWrapperUITests.swift */; };
 		AB08534929FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08534829FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift */; };
+		AB08535729FA140D00023910 /* NSFWJSWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08535629FA140D00023910 /* NSFWJSWrapper.swift */; };
+		AB08536D29FA270E00023910 /* index.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536A29FA270E00023910 /* index.ts */; };
+		AB08536E29FA270E00023910 /* nsfw_classes.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536B29FA270E00023910 /* nsfw_classes.ts */; };
+		AB08536F29FA270E00023910 /* nsfwjs.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536C29FA270E00023910 /* nsfwjs.ts */; };
+		AB08537129FA272100023910 /* NSFWJSMessager.html in Resources */ = {isa = PBXBuildFile; fileRef = AB08537029FA272100023910 /* NSFWJSMessager.html */; };
+		AB08537429FA4E6500023910 /* NSFWJSUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08537329FA4E6500023910 /* NSFWJSUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +43,6 @@
 /* Begin PBXFileReference section */
 		AB08532229FA12C100023910 /* NSFWJSWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSFWJSWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB08532529FA12C100023910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB08532729FA12C100023910 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AB08532929FA12C100023910 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AB08532C29FA12C100023910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB08532E29FA12C600023910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +53,12 @@
 		AB08534229FA12C600023910 /* NSFWJSWrapperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSFWJSWrapperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB08534629FA12C600023910 /* NSFWJSWrapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperUITests.swift; sourceTree = "<group>"; };
 		AB08534829FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AB08535629FA140D00023910 /* NSFWJSWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapper.swift; sourceTree = "<group>"; };
+		AB08536A29FA270E00023910 /* index.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.ts; sourceTree = "<group>"; };
+		AB08536B29FA270E00023910 /* nsfw_classes.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nsfw_classes.ts; sourceTree = "<group>"; };
+		AB08536C29FA270E00023910 /* nsfwjs.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nsfwjs.ts; sourceTree = "<group>"; };
+		AB08537029FA272100023910 /* NSFWJSMessager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NSFWJSMessager.html; sourceTree = "<group>"; };
+		AB08537329FA4E6500023910 /* NSFWJSUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +109,9 @@
 		AB08532429FA12C100023910 /* NSFWJSWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				AB08537229FA4E5200023910 /* Util */,
+				AB08535529FA13D500023910 /* NSFWJSWrapper */,
 				AB08532529FA12C100023910 /* AppDelegate.swift */,
-				AB08532729FA12C100023910 /* SceneDelegate.swift */,
 				AB08532929FA12C100023910 /* ViewController.swift */,
 				AB08532B29FA12C100023910 /* Main.storyboard */,
 				AB08532E29FA12C600023910 /* Assets.xcassets */,
@@ -125,6 +136,42 @@
 				AB08534829FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift */,
 			);
 			path = NSFWJSWrapperUITests;
+			sourceTree = "<group>";
+		};
+		AB08535529FA13D500023910 /* NSFWJSWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				AB08535B29FA15BC00023910 /* nsfwjs */,
+				AB08535629FA140D00023910 /* NSFWJSWrapper.swift */,
+			);
+			path = NSFWJSWrapper;
+			sourceTree = "<group>";
+		};
+		AB08535B29FA15BC00023910 /* nsfwjs */ = {
+			isa = PBXGroup;
+			children = (
+				AB08535C29FA15CF00023910 /* src */,
+			);
+			path = nsfwjs;
+			sourceTree = "<group>";
+		};
+		AB08535C29FA15CF00023910 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				AB08536A29FA270E00023910 /* index.ts */,
+				AB08536B29FA270E00023910 /* nsfw_classes.ts */,
+				AB08536C29FA270E00023910 /* nsfwjs.ts */,
+				AB08537029FA272100023910 /* NSFWJSMessager.html */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		AB08537229FA4E5200023910 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				AB08537329FA4E6500023910 /* NSFWJSUtil.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +279,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB08533229FA12C600023910 /* LaunchScreen.storyboard in Resources */,
+				AB08537129FA272100023910 /* NSFWJSMessager.html in Resources */,
+				AB08536D29FA270E00023910 /* index.ts in Resources */,
 				AB08532F29FA12C600023910 /* Assets.xcassets in Resources */,
+				AB08536F29FA270E00023910 /* nsfwjs.ts in Resources */,
+				AB08536E29FA270E00023910 /* nsfw_classes.ts in Resources */,
 				AB08532D29FA12C100023910 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB08537429FA4E6500023910 /* NSFWJSUtil.swift in Sources */,
+				AB08535729FA140D00023910 /* NSFWJSWrapper.swift in Sources */,
 				AB08532A29FA12C100023910 /* ViewController.swift in Sources */,
 				AB08532629FA12C100023910 /* AppDelegate.swift in Sources */,
-				AB08532829FA12C100023910 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +497,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -473,6 +526,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

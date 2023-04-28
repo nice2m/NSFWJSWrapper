@@ -1,0 +1,61 @@
+<!-- Load TensorFlow.js. This is required -->
+<script src="https://unpkg.com/@tensorflow/tfjs@2.6.0" type="text/javascript"></script>
+<!--<script src="https://unpkg.com/nsfwjs@2.3.0" type="text/javascript"></script>-->
+
+<!-- For testing: Load from local bundle `yarn scriptbundle && yarn minbundle` -->
+<script src="./nsfwjs.js"></script>
+<script>
+    function debugLog(msg) {
+        console.log("=====[debugLog]======");
+        console.log(msg);
+        console.log("======[debugLog]======");
+    }
+
+    function nativeOnCall(userInfo) {
+        window.webkit.messageHandlers.nativeOnCall.postMessage(userInfo);
+    }
+    
+    function callClassify(uuid,imageData) {
+        // let imageData = userInfo["imageData"];
+        // let uuid = userInfo["uuid"];
+        _callClassify(imageData).then((ret)=> {
+            nativeOnCall(
+                JSON(
+                    {
+                        uuid : uuid,
+                        result : ret
+                    }
+                )
+            );
+        });
+    }
+
+    function _callClassify(source) {
+        // 传入base 64 编码后的图片内容
+        // const nsfwjs = require('nsfwjs')
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        // some image here
+        // img.src = "https://i.imgur.com/Kwxetau.jpg";
+        img.src = source;
+
+        // Load the model.
+        nsfwjs.load().then((model) => {
+            debugLog("nsfwjs load complete:" + model);
+            // Classify the image.
+            model.classify(img).then((predictions) => {
+                var ret = predictions.map(obj => ({
+                    "className": obj["className"],
+                    "probability": obj["probability"],
+                }));
+                // console.log("Predictions", predictions);
+                // console.log("yes?");
+                // console.log(ret);
+                return Promise(function (resolve, reject) {
+                    return JSON(ret);
+                });
+            });
+        });
+    }
+
+</script>
