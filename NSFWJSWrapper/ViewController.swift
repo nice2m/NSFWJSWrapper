@@ -12,7 +12,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        NSFWJSWrapper.shared.
+        guard let img = UIImage.init(named: "test1") else {
+            return
+        }
+        NSFWJSWrapper.task(image: img) { result in
+            print(result);
+        }
     }
 
 

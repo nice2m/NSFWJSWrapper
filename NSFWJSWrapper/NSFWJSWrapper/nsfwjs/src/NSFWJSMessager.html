@@ -1,36 +1,46 @@
 <!-- Load TensorFlow.js. This is required -->
 <script src="https://unpkg.com/@tensorflow/tfjs@2.6.0" type="text/javascript"></script>
-<!--<script src="https://unpkg.com/nsfwjs@2.3.0" type="text/javascript"></script>-->
+<!-- https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script> -->
+<script src="https://unpkg.com/nsfwjs@2.3.0" type="text/javascript"></script>
 
 <!-- For testing: Load from local bundle `yarn scriptbundle && yarn minbundle` -->
-<script src="./nsfwjs.js"></script>
+<!-- <script src="./nsfwjs.ts"></script> -->
 <script>
     function debugLog(msg) {
-        console.log("=====[debugLog]======");
+        console.log("=====[debugLog-begin]======");
         console.log(msg);
-        console.log("======[debugLog]======");
+        console.log("======[debugLog-end]======");
     }
 
     function nativeOnCall(userInfo) {
         window.webkit.messageHandlers.nativeOnCall.postMessage(userInfo);
     }
-    
-    function callClassify(uuid,imageData) {
+
+    function classifyImage(uuid, imageData) {
         // let imageData = userInfo["imageData"];
         // let uuid = userInfo["uuid"];
-        _callClassify(imageData).then((ret)=> {
+        debugLog("classifyImage" + uuid + imageData);
+        _callClassify(imageData).then((ret) => {
+            debugLog("_callClassify2");
+            debugLog(ret);
             nativeOnCall(
                 JSON(
                     {
-                        uuid : uuid,
-                        result : ret
+                        uuid: uuid,
+                        result: ret
                     }
                 )
             );
+        }).catch((error) => {
+            debugLog("catch");
+            debugLog(error);
         });
     }
 
     function _callClassify(source) {
+        debugLog("_callClassify");
+
         // 传入base 64 编码后的图片内容
         // const nsfwjs = require('nsfwjs')
         const img = new Image();
@@ -38,22 +48,26 @@
         // some image here
         // img.src = "https://i.imgur.com/Kwxetau.jpg";
         img.src = source;
-
+        debugLog("img.src" + img.src);
         // Load the model.
-        nsfwjs.load().then((model) => {
-            debugLog("nsfwjs load complete:" + model);
-            // Classify the image.
-            model.classify(img).then((predictions) => {
-                var ret = predictions.map(obj => ({
-                    "className": obj["className"],
-                    "probability": obj["probability"],
-                }));
-                // console.log("Predictions", predictions);
-                // console.log("yes?");
-                // console.log(ret);
-                return Promise(function (resolve, reject) {
-                    return JSON(ret);
+        return new Promise(function (resolve, reject) {
+            nsfwjs.load().then((model) => {
+                // Classify the image.
+                model.classify(img).then((predictions) => {
+                    var ret = predictions.map(obj => ({
+                        "className": obj["className"],
+                        "probability": obj["probability"],
+                    }));
+                    console.log("Predictions", predictions);
+                    console.log("ret");
+                    console.log(ret);
+                    
+                    resolve(JSON(ret));
+                }).catch(() => {
+                    reject();
                 });
+            }).catch(() => {
+                reject();
             });
         });
     }

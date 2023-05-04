@@ -23,21 +23,8 @@ enum NSFWJSWrapperJSFunction {
     func buildFunction(extraParam: [String: String]? = nil) -> String {
         switch self {
         case .classifyImage(let uuid, let imageDataBase64):
-            var paramOrigin = [
-                "uuid" : uuid,
-                "imageData" : String(format: "data:image/png;base64,%@", imageDataBase64),
-            ]
-            
-            if let extraParam = extraParam {
-                let _ = extraParam.keys.map { key in
-                    paramOrigin[key] = extraParam[key]
-                }
-            }
-            
-            if let json = try? paramOrigin.toJsonString() {
-                return "classifyImage(\(json))"
-            }
-            return ""
+            let imageData = String(format: "data:image/png;base64,%@", imageDataBase64)
+            return "classifyImage(\(uuid),\(imageData)"
         }
     }
 }
@@ -45,31 +32,29 @@ enum NSFWJSWrapperJSFunction {
 
 class NSFWJSResultModel: Codable {
     let className: String
-    let possibility: String
+    let probability: String
 }
 
 class NSFWJSTask: NSObject {
     let uuid: String
     let image: UIImage
     
-    init(uuid: String, image: UIImage) {
+    let completion: NSFWJSCompletion?
+    
+    init(uuid: String, image: UIImage,completion: NSFWJSCompletion? = nil) {
         self.uuid = uuid
         self.image = image
-    }
-    
-    static func task(image: UIImage) -> NSFWJSTask {
-        let uuid = UUID()
-        return NSFWJSTask(uuid: uuid.uuidString, image: image)
+        self.completion = completion
     }
 }
 
-typealias NSFWJSCompletion = ([NSFWJSResultModel]) -> Void
+typealias NSFWJSCompletion = ([NSFWJSResultModel]?) -> Void
 
 class NSFWJSWrapper: NSObject {
     
-    static let shared = NSFWJSWrapper()
+    static let `default` = NSFWJSWrapper()
     
-    private var taskQueues = [String: NSFWJSTask]()
+    private var taskQueue = [String: NSFWJSTask]()
     
     private var webContainer: NSFWJSWebContainer?
     
@@ -87,7 +72,16 @@ class NSFWJSWrapper: NSObject {
         config()
     }
     
-    func classify(image: UIImage, uuid: String) {
+    @discardableResult
+    static func task(image: UIImage, completion: NSFWJSCompletion?) -> NSFWJSTask {
+        let uuid = UUID().uuidString
+        let task = NSFWJSTask(uuid: uuid, image: image, completion: completion)
+        NSFWJSWrapper.default.taskQueue[uuid] = task
+        NSFWJSWrapper.default.classify(image: image, uuid: uuid)
+        return task
+    }
+    
+    private func classify(image: UIImage, uuid: String) {
         // data:image/png;base64
         guard let data = image.jpegData(compressionQuality: 0.618) else {
             return
@@ -95,7 +89,7 @@ class NSFWJSWrapper: NSObject {
         let function = NSFWJSWrapperJSFunction.classifyImage(uuid: uuid, imageDataBase64: data.base64EncodedString()).buildFunction()
         webContainer?.evaluateJavaScript(function, completionHandler: { result, error in
             print("result:\(String(describing: result))")
-            print("error:\(error)")
+            print("error:\(String(describing: error))")
         });
     }
 }
@@ -141,9 +135,19 @@ extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print(message.body)
+        guard let body = message.body as? [String: Any],
+              let uuid = body["uuid"] as? String,
+              let bodyJSON = try? JSONSerialization.data(withJSONObject: body, options: .sortedKeys) else {
+            return
+        }
         switch message.name {
         case NSFWJSWrapperMessageName.onNativeCall.rawValue:
-            ()
+            guard let task =  taskQueue[uuid] else {
+                return
+            }
+            let decoder = JSONDecoder()
+            let modelList = try? decoder.decode([NSFWJSResultModel].self, from: bodyJSON)
+            task.completion?(modelList)
         default:
             print(message)
         }

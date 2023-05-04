@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F2FD4982A02A7A100F89ACA /* NSFWJSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD4972A02A7A100F89ACA /* NSFWJSLog.swift */; };
 		AB08532629FA12C100023910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532529FA12C100023910 /* AppDelegate.swift */; };
 		AB08532A29FA12C100023910 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532929FA12C100023910 /* ViewController.swift */; };
 		AB08532D29FA12C100023910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB08532B29FA12C100023910 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F2FD4972A02A7A100F89ACA /* NSFWJSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSLog.swift; sourceTree = "<group>"; };
 		AB08532229FA12C100023910 /* NSFWJSWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSFWJSWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB08532529FA12C100023910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB08532929FA12C100023910 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				AB08537329FA4E6500023910 /* NSFWJSUtil.swift */,
+				5F2FD4972A02A7A100F89ACA /* NSFWJSLog.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -254,7 +257,7 @@
 				};
 			};
 			buildConfigurationList = AB08531D29FA12C100023910 /* Build configuration list for PBXProject "NSFWJSWrapper" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -311,6 +314,7 @@
 			files = (
 				AB08537429FA4E6500023910 /* NSFWJSUtil.swift in Sources */,
 				AB08535729FA140D00023910 /* NSFWJSWrapper.swift in Sources */,
+				5F2FD4982A02A7A100F89ACA /* NSFWJSLog.swift in Sources */,
 				AB08532A29FA12C100023910 /* ViewController.swift in Sources */,
 				AB08532629FA12C100023910 /* AppDelegate.swift in Sources */,
 			);
