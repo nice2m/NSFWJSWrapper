@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F2FD4982A02A7A100F89ACA /* NSFWJSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD4972A02A7A100F89ACA /* NSFWJSLog.swift */; };
+		5F2FD49B2A07A2FC00F89ACA /* NSFWJSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD49A2A07A2FC00F89ACA /* NSFWJSModels.swift */; };
+		5F2FD49D2A07A34300F89ACA /* NSFWJSWrapperError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD49C2A07A34300F89ACA /* NSFWJSWrapperError.swift */; };
+		5F2FD49F2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD49E2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift */; };
 		AB08532629FA12C100023910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532529FA12C100023910 /* AppDelegate.swift */; };
 		AB08532A29FA12C100023910 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532929FA12C100023910 /* ViewController.swift */; };
 		AB08532D29FA12C100023910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB08532B29FA12C100023910 /* Main.storyboard */; };
@@ -21,7 +23,6 @@
 		AB08536E29FA270E00023910 /* nsfw_classes.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536B29FA270E00023910 /* nsfw_classes.ts */; };
 		AB08536F29FA270E00023910 /* nsfwjs.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536C29FA270E00023910 /* nsfwjs.ts */; };
 		AB08537129FA272100023910 /* NSFWJSMessager.html in Resources */ = {isa = PBXBuildFile; fileRef = AB08537029FA272100023910 /* NSFWJSMessager.html */; };
-		AB08537429FA4E6500023910 /* NSFWJSUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08537329FA4E6500023910 /* NSFWJSUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5F2FD4972A02A7A100F89ACA /* NSFWJSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSLog.swift; sourceTree = "<group>"; };
+		5F2FD49A2A07A2FC00F89ACA /* NSFWJSModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSModels.swift; sourceTree = "<group>"; };
+		5F2FD49C2A07A34300F89ACA /* NSFWJSWrapperError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperError.swift; sourceTree = "<group>"; };
+		5F2FD49E2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperWebView.swift; sourceTree = "<group>"; };
 		AB08532229FA12C100023910 /* NSFWJSWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSFWJSWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB08532529FA12C100023910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB08532929FA12C100023910 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +63,6 @@
 		AB08536B29FA270E00023910 /* nsfw_classes.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nsfw_classes.ts; sourceTree = "<group>"; };
 		AB08536C29FA270E00023910 /* nsfwjs.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nsfwjs.ts; sourceTree = "<group>"; };
 		AB08537029FA272100023910 /* NSFWJSMessager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NSFWJSMessager.html; sourceTree = "<group>"; };
-		AB08537329FA4E6500023910 /* NSFWJSUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F2FD4992A07A29B00F89ACA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F2FD49A2A07A2FC00F89ACA /* NSFWJSModels.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		AB08531929FA12C100023910 = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +121,6 @@
 		AB08532429FA12C100023910 /* NSFWJSWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				AB08537229FA4E5200023910 /* Util */,
 				AB08535529FA13D500023910 /* NSFWJSWrapper */,
 				AB08532529FA12C100023910 /* AppDelegate.swift */,
 				AB08532929FA12C100023910 /* ViewController.swift */,
@@ -143,8 +152,11 @@
 		AB08535529FA13D500023910 /* NSFWJSWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				5F2FD4992A07A29B00F89ACA /* Model */,
 				AB08535B29FA15BC00023910 /* nsfwjs */,
 				AB08535629FA140D00023910 /* NSFWJSWrapper.swift */,
+				5F2FD49C2A07A34300F89ACA /* NSFWJSWrapperError.swift */,
+				5F2FD49E2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift */,
 			);
 			path = NSFWJSWrapper;
 			sourceTree = "<group>";
@@ -166,15 +178,6 @@
 				AB08537029FA272100023910 /* NSFWJSMessager.html */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		AB08537229FA4E5200023910 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				AB08537329FA4E6500023910 /* NSFWJSUtil.swift */,
-				5F2FD4972A02A7A100F89ACA /* NSFWJSLog.swift */,
-			);
-			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,9 +315,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB08537429FA4E6500023910 /* NSFWJSUtil.swift in Sources */,
+				5F2FD49B2A07A2FC00F89ACA /* NSFWJSModels.swift in Sources */,
+				5F2FD49D2A07A34300F89ACA /* NSFWJSWrapperError.swift in Sources */,
+				5F2FD49F2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift in Sources */,
 				AB08535729FA140D00023910 /* NSFWJSWrapper.swift in Sources */,
-				5F2FD4982A02A7A100F89ACA /* NSFWJSLog.swift in Sources */,
 				AB08532A29FA12C100023910 /* ViewController.swift in Sources */,
 				AB08532629FA12C100023910 /* AppDelegate.swift in Sources */,
 			);

@@ -12,14 +12,47 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        guard let img = UIImage.init(named: "test1") else {
-            return
-        }
-        NSFWJSWrapper.task(image: img) { result in
-            print(result);
-        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        test()
     }
 
-
+    func test() {
+        guard let img = UIImage.init(named: "SCR-20230507-kitz"),
+              let img2 = UIImage.init(named: "test1"),
+              let img3 = UIImage.init(named: "test2") else {
+            return
+        }
+        
+        
+        let task = NSFWJSWrapperSingleTask.init(image: img) { results, error in
+            print("NSFWJSWrapperSingleTask.init")
+            print(String(describing: results))
+            print(String(describing:error))
+        }
+        
+        let task2 = NSFWJSWrapperSingleTask.init(image: img2)
+        
+        let task3 = NSFWJSWrapperSingleTask.init(image: img3)
+        
+        NSFWJSWrapper.default.resume(task: [task,task2,task3]) { results, error in
+            print("NSFWJSWrapper.default.resume")
+            print(String(describing: results))
+            print(String(describing:error))
+            
+            let _ = results.map {
+                _ = $0.map { model in
+                    print("\n\n=======")
+                    print(model.uuid)
+                    _ = model.classes.map{ aClass in
+                        print(aClass.className)
+                        print(aClass.probability)
+                    }
+                }
+            }
+        }
+    }
 }
 

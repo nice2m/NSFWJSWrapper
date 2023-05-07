@@ -8,149 +8,179 @@
 import UIKit
 import WebKit
 
-class NSFWJSWebContainer: WKWebView {
-    
-}
-
-enum NSFWJSWrapperMessageName: String, CaseIterable {
-    case onNativeCall
-}
-
-enum NSFWJSWrapperJSFunction {
-    
-    case classifyImage(uuid: String, imageDataBase64: String)
-    
-    func buildFunction(extraParam: [String: String]? = nil) -> String {
-        switch self {
-        case .classifyImage(let uuid, let imageDataBase64):
-            let imageData = String(format: "data:image/png;base64,%@", imageDataBase64)
-            return "classifyImage(\(uuid),\(imageData)"
-        }
-    }
-}
-
-
-class NSFWJSResultModel: Codable {
-    let className: String
-    let probability: String
-}
-
-class NSFWJSTask: NSObject {
+class NSFWJSWrapperSingleTask {
     let uuid: String
     let image: UIImage
+    let completion: NSFWJSWrapperCompletion?
     
-    let completion: NSFWJSCompletion?
-    
-    init(uuid: String, image: UIImage,completion: NSFWJSCompletion? = nil) {
+    init(uuid: String = UUID().uuidString, image: UIImage, completion: NSFWJSWrapperCompletion? = nil) {
         self.uuid = uuid
         self.image = image
         self.completion = completion
     }
+    
+    init(image: UIImage) {
+        self.image = image
+        self.uuid = UUID().uuidString
+        self.completion = nil
+    }
 }
 
-typealias NSFWJSCompletion = ([NSFWJSResultModel]?) -> Void
+typealias NSFWJSWrapperCompletion = ([NSFWJSWrapperResultModel]?, _ error: NSFWJSWrapperError?) -> Void
 
 class NSFWJSWrapper: NSObject {
+    enum Status {
+        case notInitialized
+        case ready
+        case busy
+    }
     
     static let `default` = NSFWJSWrapper()
     
-    private var taskQueue = [String: NSFWJSTask]()
+    private static var isLoaded: Bool = false
     
-    private var webContainer: NSFWJSWebContainer?
-    
-    private var isLoaded: Bool = false {
-        didSet{
-            if isLoaded {
-                
-            }
+    var status: Status {
+        if !Self.isLoaded {
+            return .notInitialized
         }
+        
+        if readyToResume() {
+            return .ready
+        }
+        
+        return .busy
     }
+    
+    private var currentResults = NSFWJSWrapperResultGroupModel()
+    
+    private var webContainer: NSFWJSWrapperWebView?
+    
+    private  var executionGroup: DispatchGroup?
     
     override init() {
         super.init()
-        
         config()
     }
     
-    @discardableResult
-    static func task(image: UIImage, completion: NSFWJSCompletion?) -> NSFWJSTask {
-        let uuid = UUID().uuidString
-        let task = NSFWJSTask(uuid: uuid, image: image, completion: completion)
-        NSFWJSWrapper.default.taskQueue[uuid] = task
-        NSFWJSWrapper.default.classify(image: image, uuid: uuid)
-        return task
+    static func initService() {
+        let _ = Self.default
     }
     
-    private func classify(image: UIImage, uuid: String) {
-        // data:image/png;base64
-        guard let data = image.jpegData(compressionQuality: 0.618) else {
+    func resume(task list: [NSFWJSWrapperSingleTask], completion: NSFWJSWrapperCompletion?) {
+        guard status == .ready else {
+            completion?(nil, NSFWJSWrapperError.notReady)
             return
         }
-        let function = NSFWJSWrapperJSFunction.classifyImage(uuid: uuid, imageDataBase64: data.base64EncodedString()).buildFunction()
-        webContainer?.evaluateJavaScript(function, completionHandler: { result, error in
-            print("result:\(String(describing: result))")
-            print("error:\(String(describing: error))")
-        });
+        guard !list.isEmpty else {
+            completion?(nil, NSFWJSWrapperError.emptyInput)
+            return
+        }
+        
+        guard readyToResume() else {
+            completion?(nil, NSFWJSWrapperError.busy)
+            return
+        }
+        
+        let groupUUID = list[0].uuid
+        currentResults = .init()
+        currentResults.groupUUID = groupUUID
+        currentResults.completion = completion
+        let group = DispatchGroup()
+        executionGroup = group
+        
+        _ = list.map{ task in
+            let singleResult = NSFWJSWrapperResultModel()
+            singleResult.uuid = task.uuid
+            singleResult.completion = task.completion
+            currentResults.list.append(singleResult)
+            
+            executionGroup?.enter()
+            classify(image: task.image, uuid: task.uuid)
+        }
+        executionGroup?.notify(queue: .main) {[weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.currentResults.completion?(weakSelf.currentResults.list, nil)
+        }
     }
 }
 
 extension NSFWJSWrapper {
+    
+    private func readyToResume() -> Bool {
+        return currentResults.isCompleted
+    }
+    
+    private func classify(image: UIImage, uuid: String) {
+        let quality: CGFloat = 0.99
+        guard let data = image.jpegData(compressionQuality: quality) else {
+            return
+        }
+        let function = NSFWJSWrapperJSFunction.classifyImage(uuid: uuid, imageDataBase64: data.base64EncodedString()).build()
+        webContainer?.evaluateJavaScript(function)
+    }
+    
     private func config() {
         
         let configuration = WKWebViewConfiguration.init()
-        let contentVC = WKUserContentController.init()
+        let userContentController = WKUserContentController.init()
         
         let _ = NSFWJSWrapperMessageName.allCases.map { name in
-            contentVC.add(self, name: name.rawValue)
+            userContentController.add(self, name: name.rawValue)
         }
-        webContainer = NSFWJSWebContainer(frame: .zero, configuration: configuration)
+        configuration.userContentController = userContentController
+        webContainer = NSFWJSWrapperWebView(frame: .zero, configuration: configuration)
+        webContainer?.navigationDelegate = self
+        webContainer?.uiDelegate = self
         
         if let fileURL = Bundle.main.url(forResource: "NSFWJSMessager.html", withExtension: nil) {
-            let request = URLRequest(url: fileURL)
+            let request = URLRequest(url: fileURL,cachePolicy: .returnCacheDataElseLoad,timeoutInterval: 60)
             webContainer?.load(request)
         }
     }
     
 }
 
+extension NSFWJSWrapper: WKUIDelegate { }
 extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("didFinish")
-        print(navigation)
-        isLoaded = true
+        Self.isLoaded = true
     }
     
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("didFail")
-        print(navigation)
-    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print("didFailProvisionalNavigation")
-        print(navigation)
-        print("\(error)")
     }
     
-    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.body)
+        switch message.name {
+        case NSFWJSWrapperMessageName.nativeOnCall.rawValue:
+            updateSingleResult(message: message)
+            executionGroup?.leave()
+        default:
+            // print(message)
+            break;
+        }
+    }
+    
+    func updateSingleResult(message: WKScriptMessage) {
         guard let body = message.body as? [String: Any],
               let uuid = body["uuid"] as? String,
-              let bodyJSON = try? JSONSerialization.data(withJSONObject: body, options: .sortedKeys) else {
+              let result = body["result"] as? [Any],
+              let resultJSON = try? JSONSerialization.data(withJSONObject: result, options: .sortedKeys) else {
             return
         }
-        switch message.name {
-        case NSFWJSWrapperMessageName.onNativeCall.rawValue:
-            guard let task =  taskQueue[uuid] else {
-                return
-            }
-            let decoder = JSONDecoder()
-            let modelList = try? decoder.decode([NSFWJSResultModel].self, from: bodyJSON)
-            task.completion?(modelList)
-        default:
-            print(message)
+        
+        let decoder = JSONDecoder()
+        guard let singleResult = currentResults.list.first(where: { $0.uuid == uuid }),
+              let classes = try? decoder.decode([NSFWJSWrapperResultClassModel].self, from: resultJSON) else {
+            return
         }
+        singleResult.classes = classes
+        singleResult.completion?([singleResult], nil)
+        singleResult.state = .finished
     }
     
 }
