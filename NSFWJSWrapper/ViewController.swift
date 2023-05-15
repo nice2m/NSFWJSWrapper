@@ -8,17 +8,38 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    ///
+    private lazy var statusLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.text = "请点击"
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        
+        view.addSubview(statusLabel)
+        NSLayoutConstraint.activate([
+            self.statusLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            self.statusLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            self.statusLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.statusLabel.topAnchor.constraint(equalTo: self.view.topAnchor)
+        ])
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         test()
     }
-
+    
     func test() {
         guard let img = UIImage.init(named: "SCR-20230507-kitz"),
               let img2 = UIImage.init(named: "test1"),

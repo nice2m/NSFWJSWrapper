@@ -19,10 +19,13 @@
 		AB08534729FA12C600023910 /* NSFWJSWrapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08534629FA12C600023910 /* NSFWJSWrapperUITests.swift */; };
 		AB08534929FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08534829FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift */; };
 		AB08535729FA140D00023910 /* NSFWJSWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08535629FA140D00023910 /* NSFWJSWrapper.swift */; };
-		AB08536D29FA270E00023910 /* index.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536A29FA270E00023910 /* index.ts */; };
-		AB08536E29FA270E00023910 /* nsfw_classes.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536B29FA270E00023910 /* nsfw_classes.ts */; };
-		AB08536F29FA270E00023910 /* nsfwjs.ts in Resources */ = {isa = PBXBuildFile; fileRef = AB08536C29FA270E00023910 /* nsfwjs.ts */; };
-		AB08537129FA272100023910 /* NSFWJSMessager.html in Resources */ = {isa = PBXBuildFile; fileRef = AB08537029FA272100023910 /* NSFWJSMessager.html */; };
+		AB7C2BEF2A12448D0004020D /* tensorflow@2.6.0.js in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BE52A12448D0004020D /* tensorflow@2.6.0.js */; };
+		AB7C2BF02A12448D0004020D /* nsfwjs@2.4.2.js in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BE62A12448D0004020D /* nsfwjs@2.4.2.js */; };
+		AB7C2BF12A12448D0004020D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BE72A12448D0004020D /* README.md */; };
+		AB7C2BF22A12448D0004020D /* model.json in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BEA2A12448D0004020D /* model.json */; };
+		AB7C2BF32A12448D0004020D /* group1-shard1of1 in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BEB2A12448D0004020D /* group1-shard1of1 */; };
+		AB7C2BF42A12448D0004020D /* NSFWJSMessager_debuger.html in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BED2A12448D0004020D /* NSFWJSMessager_debuger.html */; };
+		AB7C2BF52A12448D0004020D /* NSFWJSMessager.html in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BEE2A12448D0004020D /* NSFWJSMessager.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +62,13 @@
 		AB08534629FA12C600023910 /* NSFWJSWrapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperUITests.swift; sourceTree = "<group>"; };
 		AB08534829FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB08535629FA140D00023910 /* NSFWJSWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapper.swift; sourceTree = "<group>"; };
-		AB08536A29FA270E00023910 /* index.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.ts; sourceTree = "<group>"; };
-		AB08536B29FA270E00023910 /* nsfw_classes.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nsfw_classes.ts; sourceTree = "<group>"; };
-		AB08536C29FA270E00023910 /* nsfwjs.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nsfwjs.ts; sourceTree = "<group>"; };
-		AB08537029FA272100023910 /* NSFWJSMessager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NSFWJSMessager.html; sourceTree = "<group>"; };
+		AB7C2BE52A12448D0004020D /* tensorflow@2.6.0.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "tensorflow@2.6.0.js"; sourceTree = "<group>"; };
+		AB7C2BE62A12448D0004020D /* nsfwjs@2.4.2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "nsfwjs@2.4.2.js"; sourceTree = "<group>"; };
+		AB7C2BE72A12448D0004020D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AB7C2BEA2A12448D0004020D /* model.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = model.json; sourceTree = "<group>"; };
+		AB7C2BEB2A12448D0004020D /* group1-shard1of1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "group1-shard1of1"; sourceTree = "<group>"; };
+		AB7C2BED2A12448D0004020D /* NSFWJSMessager_debuger.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NSFWJSMessager_debuger.html; sourceTree = "<group>"; };
+		AB7C2BEE2A12448D0004020D /* NSFWJSMessager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NSFWJSMessager.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,8 +158,8 @@
 		AB08535529FA13D500023910 /* NSFWJSWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				AB7C2BE32A12448D0004020D /* nsfwjs */,
 				5F2FD4992A07A29B00F89ACA /* Model */,
-				AB08535B29FA15BC00023910 /* nsfwjs */,
 				AB08535629FA140D00023910 /* NSFWJSWrapper.swift */,
 				5F2FD49C2A07A34300F89ACA /* NSFWJSWrapperError.swift */,
 				5F2FD49E2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift */,
@@ -161,21 +167,48 @@
 			path = NSFWJSWrapper;
 			sourceTree = "<group>";
 		};
-		AB08535B29FA15BC00023910 /* nsfwjs */ = {
+		AB7C2BE32A12448D0004020D /* nsfwjs */ = {
 			isa = PBXGroup;
 			children = (
-				AB08535C29FA15CF00023910 /* src */,
+				AB7C2BE42A12448D0004020D /* js */,
+				AB7C2BE72A12448D0004020D /* README.md */,
+				AB7C2BE82A12448D0004020D /* model */,
+				AB7C2BEC2A12448D0004020D /* src */,
 			);
 			path = nsfwjs;
 			sourceTree = "<group>";
 		};
-		AB08535C29FA15CF00023910 /* src */ = {
+		AB7C2BE42A12448D0004020D /* js */ = {
 			isa = PBXGroup;
 			children = (
-				AB08536A29FA270E00023910 /* index.ts */,
-				AB08536B29FA270E00023910 /* nsfw_classes.ts */,
-				AB08536C29FA270E00023910 /* nsfwjs.ts */,
-				AB08537029FA272100023910 /* NSFWJSMessager.html */,
+				AB7C2BE52A12448D0004020D /* tensorflow@2.6.0.js */,
+				AB7C2BE62A12448D0004020D /* nsfwjs@2.4.2.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		AB7C2BE82A12448D0004020D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AB7C2BE92A12448D0004020D /* quant_nsfw_mobilenet */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AB7C2BE92A12448D0004020D /* quant_nsfw_mobilenet */ = {
+			isa = PBXGroup;
+			children = (
+				AB7C2BEA2A12448D0004020D /* model.json */,
+				AB7C2BEB2A12448D0004020D /* group1-shard1of1 */,
+			);
+			path = quant_nsfw_mobilenet;
+			sourceTree = "<group>";
+		};
+		AB7C2BEC2A12448D0004020D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				AB7C2BED2A12448D0004020D /* NSFWJSMessager_debuger.html */,
+				AB7C2BEE2A12448D0004020D /* NSFWJSMessager.html */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -284,13 +317,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB7C2BF12A12448D0004020D /* README.md in Resources */,
 				AB08533229FA12C600023910 /* LaunchScreen.storyboard in Resources */,
-				AB08537129FA272100023910 /* NSFWJSMessager.html in Resources */,
-				AB08536D29FA270E00023910 /* index.ts in Resources */,
+				AB7C2BF42A12448D0004020D /* NSFWJSMessager_debuger.html in Resources */,
+				AB7C2BF22A12448D0004020D /* model.json in Resources */,
+				AB7C2BF52A12448D0004020D /* NSFWJSMessager.html in Resources */,
+				AB7C2BEF2A12448D0004020D /* tensorflow@2.6.0.js in Resources */,
+				AB7C2BF32A12448D0004020D /* group1-shard1of1 in Resources */,
 				AB08532F29FA12C600023910 /* Assets.xcassets in Resources */,
-				AB08536F29FA270E00023910 /* nsfwjs.ts in Resources */,
-				AB08536E29FA270E00023910 /* nsfw_classes.ts in Resources */,
 				AB08532D29FA12C100023910 /* Main.storyboard in Resources */,
+				AB7C2BF02A12448D0004020D /* nsfwjs@2.4.2.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

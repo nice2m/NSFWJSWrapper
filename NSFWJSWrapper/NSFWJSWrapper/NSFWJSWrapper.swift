@@ -44,7 +44,7 @@ class NSFWJSWrapper: NSObject {
             return .notInitialized
         }
         
-        if readyToResume() {
+        if lastComplete() {
             return .ready
         }
         
@@ -66,17 +66,26 @@ class NSFWJSWrapper: NSObject {
         let _ = Self.default
     }
     
+    private var startDate: Date = .init()
+    
     func resume(task list: [NSFWJSWrapperSingleTask], completion: NSFWJSWrapperCompletion?) {
-        guard status == .ready else {
-            completion?(nil, NSFWJSWrapperError.notReady)
+        switch status {
+        case .notInitialized:
+            completion?(nil, .notReady)
             return
+        case .busy:
+            completion?(nil, .busy)
+            return
+        default:
+            break
         }
+        
         guard !list.isEmpty else {
             completion?(nil, NSFWJSWrapperError.emptyInput)
             return
         }
         
-        guard readyToResume() else {
+        guard lastComplete() else {
             completion?(nil, NSFWJSWrapperError.busy)
             return
         }
@@ -108,7 +117,7 @@ class NSFWJSWrapper: NSObject {
 
 extension NSFWJSWrapper {
     
-    private func readyToResume() -> Bool {
+    private func lastComplete() -> Bool {
         return currentResults.isCompleted
     }
     
@@ -130,6 +139,8 @@ extension NSFWJSWrapper {
             userContentController.add(self, name: name.rawValue)
         }
         configuration.userContentController = userContentController
+        configuration.mediaTypesRequiringUserActionForPlayback = []
+        configuration.allowsInlineMediaPlayback = true
         webContainer = NSFWJSWrapperWebView(frame: .zero, configuration: configuration)
         webContainer?.navigationDelegate = self
         webContainer?.uiDelegate = self
@@ -137,6 +148,7 @@ extension NSFWJSWrapper {
         if let fileURL = Bundle.main.url(forResource: "NSFWJSMessager.html", withExtension: nil) {
             let request = URLRequest(url: fileURL,cachePolicy: .returnCacheDataElseLoad,timeoutInterval: 60)
             webContainer?.load(request)
+            startDate = .init()
         }
     }
     
@@ -147,12 +159,12 @@ extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         Self.isLoaded = true
+        print("didFinish load: \(Date().timeIntervalSince(startDate)) seconds")
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { }
     
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-    }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch message.name {
@@ -179,8 +191,9 @@ extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
             return
         }
         singleResult.classes = classes
-        singleResult.completion?([singleResult], nil)
         singleResult.state = .finished
+
+        singleResult.completion?([singleResult], nil)
     }
     
 }
