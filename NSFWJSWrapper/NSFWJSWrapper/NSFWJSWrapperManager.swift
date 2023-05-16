@@ -26,8 +26,11 @@ class NSFWJSWrapperManager {
     private init() {
         configServer()
     }
+    
+    var hostName: String {
+        return webServer.serverURL?.absoluteString ?? ""
+    }
 }
-
 
 extension NSFWJSWrapperManager {
     func configServer() {
@@ -41,22 +44,18 @@ extension NSFWJSWrapperManager {
                 return GCDWebServerDataResponse(data: data, contentType: info.mimeType)
             }
         }
+        webServer.addHandler(forMethod: "GET", path: "/", request: GCDWebServerRequest.self) { request in
+            guard let path = Bundle.main.url(forResource: "NSFWJSMessager_debuger.html", withExtension: nil),
+                       let htmlString = try? String(contentsOf: path) else {
+                     return GCDWebServerDataResponse(statusCode: 501)
+                 }
+                 return GCDWebServerDataResponse(html: htmlString)
+        }
         webServer.start()
         
-        // call js
-        let host = String((webServer.serverURL?.absoluteString ?? "").dropLast(1))
+        let host = String((webServer.serverURL?.absoluteString ?? ""))
+        // load html
+        NSFWJSWrapper.default.configURL(webURLString: host)
         
-        let jsLoadings = jsesList.map{ host + $0.pathInService }
-        let function = NSFWJSWrapperJSFunction.jsOnCallLoadJSes(loadings: jsLoadings).build()
-        NSFWJSWrapper.default.webContainer?.evaluateJavaScript(function, completionHandler: { result, error in
-            print(result)
-            print(error)
-        })
-        
-        let function2 = NSFWJSWrapperJSFunction.jsOnCallUpdateTFModelUrl(TFModelUrl: host + "/").build()
-        NSFWJSWrapper.default.webContainer?.evaluateJavaScript(function2, completionHandler: { result, error in
-            print(result)
-            print(error)
-        })
     }
 }

@@ -28,6 +28,8 @@ class NSFWJSWrapperSingleTask {
     }
 }
 
+typealias NSFWJSWrapperWKWebViewDidFinish = (_ webView: WKWebView, _ navigation: WKNavigation) -> Void
+
 class NSFWJSWrapper: NSObject {
     enum Status {
         case notInitialized
@@ -51,22 +53,32 @@ class NSFWJSWrapper: NSObject {
         return .busy
     }
     
+    var wkwebviewDidFinish: NSFWJSWrapperWKWebViewDidFinish? = nil
+    
     private var currentResults = NSFWJSWrapperResultGroupModel()
     
     private(set) var webContainer: NSFWJSWrapperWebView?
     
     private  var executionGroup: DispatchGroup?
     
-    override init() {
+    private var webURL: String = ""
+    
+    private override init() {
         super.init()
         config()
     }
     
-    static func initService() {
-        let _ = Self.default
+    static func initService(url: String) {
+        let wrapper = Self.default
+        wrapper.configURL(webURLString: url)
     }
     
     private var startDate: Date = .init()
+    
+    func configURL(webURLString: String) {
+        webURL = webURLString
+        reloadWebView()
+    }
     
     func resume(task list: [NSFWJSWrapperSingleTask], completion: NSFWJSWrapperCompletion?) {
         switch status {
@@ -144,14 +156,23 @@ extension NSFWJSWrapper {
         webContainer = NSFWJSWrapperWebView(frame: .zero, configuration: configuration)
         webContainer?.navigationDelegate = self
         webContainer?.uiDelegate = self
-        
-        if let fileURL = Bundle.main.url(forResource: "NSFWJSMessager_debuger.html", withExtension: nil) {
-            let request = URLRequest(url: fileURL,cachePolicy: .returnCacheDataElseLoad,timeoutInterval: 60)
+    }
+    
+    func reloadWebView() {
+        if let URL = URL.init(string: self.webURL) {
+            let request = URLRequest(url: URL, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
             webContainer?.load(request)
             startDate = .init()
         }
     }
     
+    private func callJSUpdate(hostName: String) {
+        let function2 = NSFWJSWrapperJSFunction.jsOnCallUpdateHost(hostName: hostName).build()
+        webContainer?.evaluateJavaScript(function2, completionHandler: { ret, error in
+            print(error)
+            print(ret)
+        })
+    }
 }
 
 extension NSFWJSWrapper: WKUIDelegate { }
@@ -160,10 +181,14 @@ extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         Self.isLoaded = true
         print("didFinish load: \(Date().timeIntervalSince(startDate)) seconds")
-        NSFWJSWrapperManager.default
+        let hostName = NSFWJSWrapperManager.default.hostName
+        callJSUpdate(hostName: hostName)
     }
     
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print("didFail")
+        print(error)
+    }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { }
     
