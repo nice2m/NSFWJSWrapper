@@ -7,21 +7,16 @@ A  NSFW & SFW detecting demo for iOS , based on [nsfwjs](https://github.com/infi
 
 > iOS side indecent content checking，like Porn/Neutral/Sexy/Hentai/Drawing
 
-**Detailed info**
-1. ```` branch main ```` for iOS hosted an [GCDWebServer](https://github.com/swisspol/GCDWebServer) serving the model loading
 
-2. ```` branch webresources ````, just replace xxx.json model fetch url 
+1. ```` branch main ```` for iOS hosted an [GCDWebServer](https://github.com/swisspol/GCDWebServer) serving the tensorflow model and required js loading, off-line supported, usually takes 5-7 seconds to initialization.
+
+2. ```` branch load_from_remote ````, replace tensorflow_url,nsfwjs_url, model_url(optional) with properly deploied urls in NSFWJSMessager.html,to use the function user should be on-line, required js files tensorflow models should be deployed to a remote server,for team work use case web app, android, ios.
 
 
 **Next Step**
 
 * [X] single/multipule UIImage(s) detecting base on [tensorflow](https://baike.baidu.com/item/TensorFlow/18828108)
-* [-] ~~load tensflow.js / nsfwjs.js from bundle to speed up the initialzation~~
-
- >To speed up the initialzation：JavaScript can't load required files from mobile native files system directly, the required files such as ```` quant_nsfw_mobilenet/grop-shard11 quant_nsfw_mobilenet/model.json ```` refed from [github-issues](https://github.com/infinitered/nsfwjs/issues/139), so offering a self hosted web server either from mobile native or remote server should be the way to solve the loading restrict issue.
- 
- > JavaScript file loading restricts refs: [Same-origin](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
-
+* [-] ~~load tensflow.js / nsfwjs.js from bundle to speed up the initialzation~~ native self hosted http server
 * [ ] gif image support
 * [-] UGC contents represented in other way: character sentences, voices detecting feature
 * [ ] iOS/Android unified interface integration, under most developing cases should be like this

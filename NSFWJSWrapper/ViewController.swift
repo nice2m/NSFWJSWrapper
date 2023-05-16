@@ -11,20 +11,20 @@ class ViewController: UIViewController {
     ///
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.text = "请点击"
+        label.text = "点击屏幕空白，查看打印日志"
+        label.textColor = .black
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = .white
+        view.backgroundColor = .white
         
         view.addSubview(statusLabel)
         NSLayoutConstraint.activate([

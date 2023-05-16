@@ -8,6 +8,8 @@
 import UIKit
 import WebKit
 
+typealias NSFWJSWrapperCompletion = ([NSFWJSWrapperResultModel]?, _ error: NSFWJSWrapperError?) -> Void
+
 class NSFWJSWrapperSingleTask {
     let uuid: String
     let image: UIImage
@@ -25,8 +27,6 @@ class NSFWJSWrapperSingleTask {
         self.completion = nil
     }
 }
-
-typealias NSFWJSWrapperCompletion = ([NSFWJSWrapperResultModel]?, _ error: NSFWJSWrapperError?) -> Void
 
 class NSFWJSWrapper: NSObject {
     enum Status {
@@ -53,7 +53,7 @@ class NSFWJSWrapper: NSObject {
     
     private var currentResults = NSFWJSWrapperResultGroupModel()
     
-    private var webContainer: NSFWJSWrapperWebView?
+    private(set) var webContainer: NSFWJSWrapperWebView?
     
     private  var executionGroup: DispatchGroup?
     
@@ -145,7 +145,7 @@ extension NSFWJSWrapper {
         webContainer?.navigationDelegate = self
         webContainer?.uiDelegate = self
         
-        if let fileURL = Bundle.main.url(forResource: "NSFWJSMessager.html", withExtension: nil) {
+        if let fileURL = Bundle.main.url(forResource: "NSFWJSMessager_debuger.html", withExtension: nil) {
             let request = URLRequest(url: fileURL,cachePolicy: .returnCacheDataElseLoad,timeoutInterval: 60)
             webContainer?.load(request)
             startDate = .init()
@@ -160,6 +160,7 @@ extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         Self.isLoaded = true
         print("didFinish load: \(Date().timeIntervalSince(startDate)) seconds")
+        NSFWJSWrapperManager.default
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { }

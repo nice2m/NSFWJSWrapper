@@ -5,26 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script id="script_loading_tensorflow"></script>
-    <script id="script_loading_nsfwjs"></script>
     <script>
+
+
+        // 3. tensorflow models url replacement
+        var tf_model_url;
 
         // 0. we can use this demo code when live-server plugin installed, or we should deploye  all files under nsfwjs/ to an remote accessable server.
 
         // 1. tensorflow url replacement
         // var tensorflow_url="https://unpkg.com/@tensorflow/tfjs@2.6.0";
         // loaded from vscode plugin live-server https://github.com/ritwickdey/vscode-live-server-plus-plus 
-        var tensorflow_url = "../js/tensorflow@2.6.0.js";
-        document.getElementById('script_loading_tensorflow').src = tensorflow_url;
+        // var tensorflow_url = "../js/tensorflow@2.6.0.js";
+        // document.getElementById('script_loading_tensorflow').src = tensorflow_url;
 
         // 2. nsfwjs url replacement
         // var nsfwjs_url="https://unpkg.com/nsfwjs@2.4.2";
         // loaded from vscode plugin live-server https://github.com/ritwickdey/vscode-live-server-plus-plus 
-        var nsfwjs_url = "../js/nsfwjs@2.4.2.js";
-        document.getElementById('script_loading_nsfwjs').src = nsfwjs_url;
+        // var nsfwjs_url = "../js/nsfwjs";
+        // document.getElementById('script_loading_nsfwjs').src = nsfwjs_url;
 
-        // 3. tensorflow models url replacement
-        var model_url = "../model/quant_nsfw_mobilenet/";
+        function jsOnCallLoadJSes(jses) {
+            jses.map((js) => {
+                var someScriptElement = document.createElement("script");
+                someScriptElement.setAttribute("src",js);
+                document.body.appendChild(someScriptElement);
+            });
+        }
+
+        function jsOnCallUpdateTFModelUrl(TFModelUrl) {
+            tf_model_url = TFModelUrl;
+        }
+        
     </script>
 
     <script>
@@ -65,7 +77,10 @@
             img.src = source;
             // Load the model.
             return new Promise(function (resolve, reject) {
-                nsfwjs.load(model_url)
+                debugLog("tf_model_url");
+                debugLog(tf_model_url);
+                
+                nsfwjs.load(tf_model_url)
                     .then((model) => {
                         debugLog("nsfwjs.load complete");
                         debugLog(model);

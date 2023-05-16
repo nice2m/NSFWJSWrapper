@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2163E8934F3FFAE81A075091 /* Pods_NSFWJSWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D915E8073278CE504950BB0 /* Pods_NSFWJSWrapper.framework */; };
+		231DE45B09D51E55E839967B /* Pods_NSFWJSWrapper_NSFWJSWrapperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60477B613322ECF7FCF6CCA9 /* Pods_NSFWJSWrapper_NSFWJSWrapperUITests.framework */; };
 		5F2FD49B2A07A2FC00F89ACA /* NSFWJSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD49A2A07A2FC00F89ACA /* NSFWJSModels.swift */; };
 		5F2FD49D2A07A34300F89ACA /* NSFWJSWrapperError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD49C2A07A34300F89ACA /* NSFWJSWrapperError.swift */; };
 		5F2FD49F2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD49E2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift */; };
+		705B94C6F3400C3BDEA960ED /* Pods_NSFWJSWrapperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D77A39BA719D83B7EC931A /* Pods_NSFWJSWrapperTests.framework */; };
 		AB08532629FA12C100023910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532529FA12C100023910 /* AppDelegate.swift */; };
 		AB08532A29FA12C100023910 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08532929FA12C100023910 /* ViewController.swift */; };
 		AB08532D29FA12C100023910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB08532B29FA12C100023910 /* Main.storyboard */; };
@@ -19,6 +22,8 @@
 		AB08534729FA12C600023910 /* NSFWJSWrapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08534629FA12C600023910 /* NSFWJSWrapperUITests.swift */; };
 		AB08534929FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08534829FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift */; };
 		AB08535729FA140D00023910 /* NSFWJSWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08535629FA140D00023910 /* NSFWJSWrapper.swift */; };
+		AB13B13B2A131D3B00C41CE3 /* NSFWJSWrapperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB13B13A2A131D3B00C41CE3 /* NSFWJSWrapperManager.swift */; };
+		AB13B13D2A131D5E00C41CE3 /* NSFWJSWrapperJSLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB13B13C2A131D5E00C41CE3 /* NSFWJSWrapperJSLoading.swift */; };
 		AB7C2BEF2A12448D0004020D /* tensorflow@2.6.0.js in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BE52A12448D0004020D /* tensorflow@2.6.0.js */; };
 		AB7C2BF02A12448D0004020D /* nsfwjs@2.4.2.js in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BE62A12448D0004020D /* nsfwjs@2.4.2.js */; };
 		AB7C2BF12A12448D0004020D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BE72A12448D0004020D /* README.md */; };
@@ -26,6 +31,7 @@
 		AB7C2BF32A12448D0004020D /* group1-shard1of1 in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BEB2A12448D0004020D /* group1-shard1of1 */; };
 		AB7C2BF42A12448D0004020D /* NSFWJSMessager_debuger.html in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BED2A12448D0004020D /* NSFWJSMessager_debuger.html */; };
 		AB7C2BF52A12448D0004020D /* NSFWJSMessager.html in Resources */ = {isa = PBXBuildFile; fileRef = AB7C2BEE2A12448D0004020D /* NSFWJSMessager.html */; };
+		ABD37D682A13723300947D1D /* tf.min.js.map.json in Resources */ = {isa = PBXBuildFile; fileRef = ABD37D672A13723300947D1D /* tf.min.js.map.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,9 +52,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		031D98CAD65C9DFEF52F8FA8 /* Pods-NSFWJSWrapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFWJSWrapper.debug.xcconfig"; path = "Target Support Files/Pods-NSFWJSWrapper/Pods-NSFWJSWrapper.debug.xcconfig"; sourceTree = "<group>"; };
+		279AE499C409E16A8DC94075 /* Pods-NSFWJSWrapperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFWJSWrapperTests.release.xcconfig"; path = "Target Support Files/Pods-NSFWJSWrapperTests/Pods-NSFWJSWrapperTests.release.xcconfig"; sourceTree = "<group>"; };
 		5F2FD49A2A07A2FC00F89ACA /* NSFWJSModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSModels.swift; sourceTree = "<group>"; };
 		5F2FD49C2A07A34300F89ACA /* NSFWJSWrapperError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperError.swift; sourceTree = "<group>"; };
 		5F2FD49E2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperWebView.swift; sourceTree = "<group>"; };
+		60477B613322ECF7FCF6CCA9 /* Pods_NSFWJSWrapper_NSFWJSWrapperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSFWJSWrapper_NSFWJSWrapperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69451A7447F2B4ECA02A4B11 /* Pods-NSFWJSWrapper-NSFWJSWrapperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFWJSWrapper-NSFWJSWrapperUITests.release.xcconfig"; path = "Target Support Files/Pods-NSFWJSWrapper-NSFWJSWrapperUITests/Pods-NSFWJSWrapper-NSFWJSWrapperUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7D915E8073278CE504950BB0 /* Pods_NSFWJSWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSFWJSWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		831D67124A994C80111A493B /* Pods-NSFWJSWrapper-NSFWJSWrapperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFWJSWrapper-NSFWJSWrapperUITests.debug.xcconfig"; path = "Target Support Files/Pods-NSFWJSWrapper-NSFWJSWrapperUITests/Pods-NSFWJSWrapper-NSFWJSWrapperUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		861DC3D6587607396EEF7965 /* Pods-NSFWJSWrapperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFWJSWrapperTests.debug.xcconfig"; path = "Target Support Files/Pods-NSFWJSWrapperTests/Pods-NSFWJSWrapperTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A15A8F90C8D794D12C55D23 /* Pods-NSFWJSWrapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFWJSWrapper.release.xcconfig"; path = "Target Support Files/Pods-NSFWJSWrapper/Pods-NSFWJSWrapper.release.xcconfig"; sourceTree = "<group>"; };
 		AB08532229FA12C100023910 /* NSFWJSWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSFWJSWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB08532529FA12C100023910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB08532929FA12C100023910 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +76,9 @@
 		AB08534629FA12C600023910 /* NSFWJSWrapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperUITests.swift; sourceTree = "<group>"; };
 		AB08534829FA12C600023910 /* NSFWJSWrapperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB08535629FA140D00023910 /* NSFWJSWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapper.swift; sourceTree = "<group>"; };
+		AB13B13A2A131D3B00C41CE3 /* NSFWJSWrapperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperManager.swift; sourceTree = "<group>"; };
+		AB13B13C2A131D5E00C41CE3 /* NSFWJSWrapperJSLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWJSWrapperJSLoading.swift; sourceTree = "<group>"; };
+		AB32EC6E2A1333B2005EE9E1 /* NSFWJSWrapper-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFWJSWrapper-swift.h"; sourceTree = "<group>"; };
 		AB7C2BE52A12448D0004020D /* tensorflow@2.6.0.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "tensorflow@2.6.0.js"; sourceTree = "<group>"; };
 		AB7C2BE62A12448D0004020D /* nsfwjs@2.4.2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "nsfwjs@2.4.2.js"; sourceTree = "<group>"; };
 		AB7C2BE72A12448D0004020D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -69,6 +86,8 @@
 		AB7C2BEB2A12448D0004020D /* group1-shard1of1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "group1-shard1of1"; sourceTree = "<group>"; };
 		AB7C2BED2A12448D0004020D /* NSFWJSMessager_debuger.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NSFWJSMessager_debuger.html; sourceTree = "<group>"; };
 		AB7C2BEE2A12448D0004020D /* NSFWJSMessager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NSFWJSMessager.html; sourceTree = "<group>"; };
+		ABD37D672A13723300947D1D /* tf.min.js.map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tf.min.js.map.json; sourceTree = "<group>"; };
+		C3D77A39BA719D83B7EC931A /* Pods_NSFWJSWrapperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSFWJSWrapperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2163E8934F3FFAE81A075091 /* Pods_NSFWJSWrapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				705B94C6F3400C3BDEA960ED /* Pods_NSFWJSWrapperTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,18 +111,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231DE45B09D51E55E839967B /* Pods_NSFWJSWrapper_NSFWJSWrapperUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CEA82D9CB0688DDA5A54EE9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D915E8073278CE504950BB0 /* Pods_NSFWJSWrapper.framework */,
+				60477B613322ECF7FCF6CCA9 /* Pods_NSFWJSWrapper_NSFWJSWrapperUITests.framework */,
+				C3D77A39BA719D83B7EC931A /* Pods_NSFWJSWrapperTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5F2FD4992A07A29B00F89ACA /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				5F2FD49A2A07A2FC00F89ACA /* NSFWJSModels.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7848006202CEC97094600DC5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				031D98CAD65C9DFEF52F8FA8 /* Pods-NSFWJSWrapper.debug.xcconfig */,
+				9A15A8F90C8D794D12C55D23 /* Pods-NSFWJSWrapper.release.xcconfig */,
+				831D67124A994C80111A493B /* Pods-NSFWJSWrapper-NSFWJSWrapperUITests.debug.xcconfig */,
+				69451A7447F2B4ECA02A4B11 /* Pods-NSFWJSWrapper-NSFWJSWrapperUITests.release.xcconfig */,
+				861DC3D6587607396EEF7965 /* Pods-NSFWJSWrapperTests.debug.xcconfig */,
+				279AE499C409E16A8DC94075 /* Pods-NSFWJSWrapperTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		AB08531929FA12C100023910 = {
@@ -111,6 +156,8 @@
 				AB08533B29FA12C600023910 /* NSFWJSWrapperTests */,
 				AB08534529FA12C600023910 /* NSFWJSWrapperUITests */,
 				AB08532329FA12C100023910 /* Products */,
+				7848006202CEC97094600DC5 /* Pods */,
+				3CEA82D9CB0688DDA5A54EE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +181,7 @@
 				AB08532E29FA12C600023910 /* Assets.xcassets */,
 				AB08533029FA12C600023910 /* LaunchScreen.storyboard */,
 				AB08533329FA12C600023910 /* Info.plist */,
+				AB32EC6E2A1333B2005EE9E1 /* NSFWJSWrapper-swift.h */,
 			);
 			path = NSFWJSWrapper;
 			sourceTree = "<group>";
@@ -161,6 +209,8 @@
 				AB7C2BE32A12448D0004020D /* nsfwjs */,
 				5F2FD4992A07A29B00F89ACA /* Model */,
 				AB08535629FA140D00023910 /* NSFWJSWrapper.swift */,
+				AB13B13A2A131D3B00C41CE3 /* NSFWJSWrapperManager.swift */,
+				AB13B13C2A131D5E00C41CE3 /* NSFWJSWrapperJSLoading.swift */,
 				5F2FD49C2A07A34300F89ACA /* NSFWJSWrapperError.swift */,
 				5F2FD49E2A07A37A00F89ACA /* NSFWJSWrapperWebView.swift */,
 			);
@@ -190,6 +240,7 @@
 		AB7C2BE82A12448D0004020D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				ABD37D672A13723300947D1D /* tf.min.js.map.json */,
 				AB7C2BE92A12448D0004020D /* quant_nsfw_mobilenet */,
 			);
 			path = model;
@@ -220,9 +271,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB08534C29FA12C600023910 /* Build configuration list for PBXNativeTarget "NSFWJSWrapper" */;
 			buildPhases = (
+				06D3F21A297C7FC9CFBBD184 /* [CP] Check Pods Manifest.lock */,
 				AB08531E29FA12C100023910 /* Sources */,
 				AB08531F29FA12C100023910 /* Frameworks */,
 				AB08532029FA12C100023910 /* Resources */,
+				0A7FE94DE0EEC0909689ADF3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,6 +290,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB08534F29FA12C600023910 /* Build configuration list for PBXNativeTarget "NSFWJSWrapperTests" */;
 			buildPhases = (
+				B2237B2B58A6172C6E83DAE6 /* [CP] Check Pods Manifest.lock */,
 				AB08533429FA12C600023910 /* Sources */,
 				AB08533529FA12C600023910 /* Frameworks */,
 				AB08533629FA12C600023910 /* Resources */,
@@ -255,9 +309,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB08535229FA12C600023910 /* Build configuration list for PBXNativeTarget "NSFWJSWrapperUITests" */;
 			buildPhases = (
+				D4986EF0E54940B85C154D36 /* [CP] Check Pods Manifest.lock */,
 				AB08533E29FA12C600023910 /* Sources */,
 				AB08533F29FA12C600023910 /* Frameworks */,
 				AB08534029FA12C600023910 /* Resources */,
+				1301FFE23A83B149A810B283 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -320,6 +376,7 @@
 				AB7C2BF12A12448D0004020D /* README.md in Resources */,
 				AB08533229FA12C600023910 /* LaunchScreen.storyboard in Resources */,
 				AB7C2BF42A12448D0004020D /* NSFWJSMessager_debuger.html in Resources */,
+				ABD37D682A13723300947D1D /* tf.min.js.map.json in Resources */,
 				AB7C2BF22A12448D0004020D /* model.json in Resources */,
 				AB7C2BF52A12448D0004020D /* NSFWJSMessager.html in Resources */,
 				AB7C2BEF2A12448D0004020D /* tensorflow@2.6.0.js in Resources */,
@@ -346,6 +403,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		06D3F21A297C7FC9CFBBD184 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NSFWJSWrapper-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0A7FE94DE0EEC0909689ADF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NSFWJSWrapper/Pods-NSFWJSWrapper-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NSFWJSWrapper/Pods-NSFWJSWrapper-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NSFWJSWrapper/Pods-NSFWJSWrapper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1301FFE23A83B149A810B283 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NSFWJSWrapper-NSFWJSWrapperUITests/Pods-NSFWJSWrapper-NSFWJSWrapperUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NSFWJSWrapper-NSFWJSWrapperUITests/Pods-NSFWJSWrapper-NSFWJSWrapperUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NSFWJSWrapper-NSFWJSWrapperUITests/Pods-NSFWJSWrapper-NSFWJSWrapperUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2237B2B58A6172C6E83DAE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NSFWJSWrapperTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4986EF0E54940B85C154D36 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NSFWJSWrapper-NSFWJSWrapperUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB08531E29FA12C100023910 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -357,6 +517,8 @@
 				AB08535729FA140D00023910 /* NSFWJSWrapper.swift in Sources */,
 				AB08532A29FA12C100023910 /* ViewController.swift in Sources */,
 				AB08532629FA12C100023910 /* AppDelegate.swift in Sources */,
+				AB13B13D2A131D5E00C41CE3 /* NSFWJSWrapperJSLoading.swift in Sources */,
+				AB13B13B2A131D3B00C41CE3 /* NSFWJSWrapperManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +690,7 @@
 		};
 		AB08534D29FA12C600023910 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 031D98CAD65C9DFEF52F8FA8 /* Pods-NSFWJSWrapper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -541,7 +704,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -550,6 +713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.banner.NSFWJSWrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/NSFWJSWrapper/NSFWJSWrapper-swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -557,6 +721,7 @@
 		};
 		AB08534E29FA12C600023910 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A15A8F90C8D794D12C55D23 /* Pods-NSFWJSWrapper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -570,7 +735,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,6 +744,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demo.banner.NSFWJSWrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/NSFWJSWrapper/NSFWJSWrapper-swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -586,6 +752,7 @@
 		};
 		AB08535029FA12C600023910 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 861DC3D6587607396EEF7965 /* Pods-NSFWJSWrapperTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -606,6 +773,7 @@
 		};
 		AB08535129FA12C600023910 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 279AE499C409E16A8DC94075 /* Pods-NSFWJSWrapperTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -626,6 +794,7 @@
 		};
 		AB08535329FA12C600023910 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 831D67124A994C80111A493B /* Pods-NSFWJSWrapper-NSFWJSWrapperUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -644,6 +813,7 @@
 		};
 		AB08535429FA12C600023910 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69451A7447F2B4ECA02A4B11 /* Pods-NSFWJSWrapper-NSFWJSWrapperUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
