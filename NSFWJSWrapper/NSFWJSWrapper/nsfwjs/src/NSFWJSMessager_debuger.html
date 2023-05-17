@@ -12,7 +12,6 @@
         let _nativeOnCall_updateSingleClassifyComplete = "updateSingleClassifyComplete";
         let _nativeOnCall_updateWramUpLoadComplete = "updateWramUpLoadComplete";
 
-
         function nativeOnCall(name,info) {
             let userInfo = {name: name, info: info};
             window.webkit.messageHandlers.nativeOnCall.postMessage(userInfo);
