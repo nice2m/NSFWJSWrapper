@@ -10,8 +10,14 @@ import WebKit
 
 class NSFWJSWrapperWebView: WKWebView { }
 
-enum NSFWJSWrapperMessageName: String, CaseIterable {
+enum NSFWJSWrapperMessageHandler: String, CaseIterable {
     case nativeOnCall
+    
+    enum Name: String {
+        case updateJSFilesLoadSucceed
+        case updateSingleClassifyComplete
+        case updateWramUpLoadComplete
+    }
 }
 
 enum NSFWJSWrapperJSFunction {
@@ -25,8 +31,7 @@ enum NSFWJSWrapperJSFunction {
             let imageData = String(format: "data:image/png;base64,%@", imageDataBase64)
             return "classifyImage('\(uuid)','\(imageData)');"
         case .jsOnCallUpdateHost(let hostName):
-            // return "window.jsOnCallUpdateHost('\(hostName)');"
-            // return "console.log(\(hostName));";
+             return "jsOnCallUpdateHost('\(hostName)');"
         }
     }
 }

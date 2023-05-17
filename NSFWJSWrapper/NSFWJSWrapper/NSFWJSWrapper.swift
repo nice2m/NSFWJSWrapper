@@ -39,10 +39,10 @@ class NSFWJSWrapper: NSObject {
     
     static let `default` = NSFWJSWrapper()
     
-    private static var isLoaded: Bool = false
+    private static var webPageLoaded = false
     
     var status: Status {
-        if !Self.isLoaded {
+        if !Self.webPageLoaded {
             return .notInitialized
         }
         
@@ -59,7 +59,7 @@ class NSFWJSWrapper: NSObject {
     
     private(set) var webContainer: NSFWJSWrapperWebView?
     
-    private  var executionGroup: DispatchGroup?
+    private  var classifyExecutionGroup: DispatchGroup?
     
     private var webURL: String = ""
     
@@ -107,7 +107,7 @@ class NSFWJSWrapper: NSObject {
         currentResults.groupUUID = groupUUID
         currentResults.completion = completion
         let group = DispatchGroup()
-        executionGroup = group
+        classifyExecutionGroup = group
         
         _ = list.map{ task in
             let singleResult = NSFWJSWrapperResultModel()
@@ -115,10 +115,10 @@ class NSFWJSWrapper: NSObject {
             singleResult.completion = task.completion
             currentResults.list.append(singleResult)
             
-            executionGroup?.enter()
+            classifyExecutionGroup?.enter()
             classify(image: task.image, uuid: task.uuid)
         }
-        executionGroup?.notify(queue: .main) {[weak self] in
+        classifyExecutionGroup?.notify(queue: .main) {[weak self] in
             guard let weakSelf = self else {
                 return
             }
@@ -147,7 +147,7 @@ extension NSFWJSWrapper {
         let configuration = WKWebViewConfiguration.init()
         let userContentController = WKUserContentController.init()
         
-        let _ = NSFWJSWrapperMessageName.allCases.map { name in
+        let _ = NSFWJSWrapperMessageHandler.allCases.map { name in
             userContentController.add(self, name: name.rawValue)
         }
         configuration.userContentController = userContentController
@@ -160,7 +160,7 @@ extension NSFWJSWrapper {
     
     func reloadWebView() {
         if let URL = URL.init(string: self.webURL) {
-            let request = URLRequest(url: URL, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
+            let request = URLRequest(url: URL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
             webContainer?.load(request)
             startDate = .init()
         }
@@ -179,10 +179,13 @@ extension NSFWJSWrapper: WKUIDelegate { }
 extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        Self.isLoaded = true
-        print("didFinish load: \(Date().timeIntervalSince(startDate)) seconds")
         let hostName = NSFWJSWrapperManager.default.hostName
         callJSUpdate(hostName: hostName)
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+//            let hostName = NSFWJSWrapperManager.default.hostName
+//            self.callJSUpdate(hostName: hostName)
+//        }
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -194,9 +197,29 @@ extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch message.name {
-        case NSFWJSWrapperMessageName.nativeOnCall.rawValue:
-            updateSingleResult(message: message)
-            executionGroup?.leave()
+        case NSFWJSWrapperMessageHandler.nativeOnCall.rawValue:
+            guard let body = message.body as? [String: Any],
+                  let name = body["name"] as? String else {
+                return
+            }
+            
+            let callName = NSFWJSWrapperMessageHandler.Name.init(rawValue: name)
+            switch callName {
+            case .none:
+                print("")
+            case .some(let aName):
+                switch aName {
+                case .updateWramUpLoadComplete:
+                    Self.webPageLoaded = true
+                    print("====updateWramUpLoadComplete:\(Date().timeIntervalSince(startDate)) seconds")
+                case .updateJSFilesLoadSucceed:
+                    ()
+                    print("updateJSFilesLoadSucceed")
+                case .updateSingleClassifyComplete:
+                    updateSingleResult(message: message)
+                    classifyExecutionGroup?.leave()
+                }
+            }
         default:
             // print(message)
             break;
@@ -205,8 +228,9 @@ extension NSFWJSWrapper: WKScriptMessageHandler, WKNavigationDelegate {
     
     func updateSingleResult(message: WKScriptMessage) {
         guard let body = message.body as? [String: Any],
-              let uuid = body["uuid"] as? String,
-              let result = body["result"] as? [Any],
+              let info = body["info"] as? [String: Any],
+              let uuid = info["uuid"] as? String,
+              let result = info["result"] as? [Any],
               let resultJSON = try? JSONSerialization.data(withJSONObject: result, options: .sortedKeys) else {
             return
         }

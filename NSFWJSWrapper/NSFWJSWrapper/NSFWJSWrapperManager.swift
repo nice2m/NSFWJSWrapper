@@ -10,13 +10,13 @@ import Foundation
 class NSFWJSWrapperManager {
     
     private var jsesList: [NSFWJSWrapperFileServiceInfo] = [
-        .init(fileNameInBundle: "nsfwjs@2.4.2.js", pathInService: "/nsfw.js", mimeType: "text/javascript"),
+        .init(fileNameInBundle: "nsfwjs@2.4.2.js", pathInService: "/nsfwjs.js", mimeType: "text/javascript"),
         .init(fileNameInBundle: "tensorflow@2.6.0.js", pathInService: "/tensorflow.js", mimeType: "text/javascript"),
     ]
     private var serviceList: [NSFWJSWrapperFileServiceInfo] = [
         .init(fileNameInBundle: "tf.min.js.map.json", pathInService: "/tf.min.js.map", mimeType: "text/json"),
         .init(fileNameInBundle: "model.json", pathInService: "/model.json", mimeType: "text/json"),
-        .init(fileNameInBundle: "group1-shard1of1", pathInService: "/group1-shard1of1",mimeType: "application/octet-stream")
+        .init(fileNameInBundle: "group1-shard1of1", pathInService: "/group1-shard1of1",mimeType: "binary/octet-stream")
     ]
     
     static let `default`: NSFWJSWrapperManager = .init()
@@ -41,7 +41,9 @@ extension NSFWJSWrapperManager {
                       let data = try? Data(contentsOf: path) else {
                     return GCDWebServerDataResponse(statusCode: 501)
                 }
-                return GCDWebServerDataResponse(data: data, contentType: info.mimeType)
+                let response = GCDWebServerDataResponse(data: data, contentType: info.mimeType)
+                response.cacheControlMaxAge = UInt.max
+                return response
             }
         }
         webServer.addHandler(forMethod: "GET", path: "/", request: GCDWebServerRequest.self) { request in

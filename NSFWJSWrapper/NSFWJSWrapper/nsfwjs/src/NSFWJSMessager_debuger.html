@@ -5,27 +5,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script>
 
-        var _host_name;
+        let _nativeOnCall_updateJSFilesLoadSucceed = "updateJSFilesLoadSucceed";
+        let _nativeOnCall_updateSingleClassifyComplete = "updateSingleClassifyComplete";
+        let _nativeOnCall_updateWramUpLoadComplete = "updateWramUpLoadComplete";
 
-        function jsOnCallUpdateHost(hostName) {
-            _host_name = hostName;
-            console.log(hostName);
 
-            // 开始加载 js
-            // ['tensorflow.js','nsfwjs.js'].map((jsPath) => {
-            //     var script = document.createElement("script");
-            //     // script.src = _host_name + jsPath
-            //     script.src = jsPath;
-            //     document.body.appendChild(script);
-            // });
+        function nativeOnCall(name,info) {
+            let userInfo = {name: name, info: info};
+            window.webkit.messageHandlers.nativeOnCall.postMessage(userInfo);
         }
 
-        // 更新js端 服务器地址
+    </script>
+    <script>
+
+        var _hostName;
+        var _js_loadings = [
+            {
+                fileName: "tensorflow.js",
+                isLoaded: false
+            },
+            {
+                fileName: "nsfwjs.js",
+                isLoaded: false
+            }
+        ];
+        
+        // 更新js端 服务器地址，开始加载js
+        function jsOnCallUpdateHost(hostName) {
+            _hostName = hostName;
+            debugLog(hostName);
+            // 开始加载 js
+            let jsArr = _js_loadings.map((loading)=>{
+                return loading.fileName;
+            })
+            jsArr.map(jsPath => {
+                var script = document.createElement("script");
+                script.src = _hostName + jsPath;
+                script.onload = function(){
+                    jsLoadingCompleteCheck(script.src);
+                }
+                
+                // debugLog(script.src);
+                document.body.appendChild(script);
+                return null;
+            });
+        }
+
         function tensorflowModelUrl() {
-            // return _host_name + "model.json";
-            return _host_name;
+            return _hostName;
+        }
+
+        function jsLoadingCompleteCheck(jsSrc) {
+            let loading = _js_loadings.filter((tmpLoading) => {
+                return jsSrc.includes(tmpLoading.fileName)
+            })[0];
+            loading.isLoaded = true;
+
+            // 检查是否所有都加载完成，完成时那么通知原生,已准备就绪
+            let loadCompleteFlag = _js_loadings.reduce(function(accumulator,currentValue) {
+                return accumulator && currentValue.isLoaded;
+            },true);
+            
+            if (loadCompleteFlag) {
+                nativeOnCall(_nativeOnCall_updateJSFilesLoadSucceed,{ info: { result:true} });
+                warmupNSFWJS();
+            }
+        }
+
+        function warmupNSFWJS() {
+            // 预热加载 tensorflow model
+            nsfwjs
+                .load(tensorflowModelUrl())
+                .then((model) => {
+                    debugLog("warn up model load complete");
+                    nativeOnCall(_nativeOnCall_updateWramUpLoadComplete,{});
+                })
+                .catch((error) => {
+                    debugLog("warn up model load error:" + error);
+                });
         }
 
     </script>
@@ -34,14 +94,10 @@
 
         function debugLog(msg) {
             console.log("<<<<<<");
-            console.log("[date]" + Date());
-            console.log("[content]");
+            console.log("🕙[date]" + Date());
+            console.log("❕❕[content]");
             console.log("\t" + msg);
             console.log(">>>>>>");
-        }
-
-        function nativeOnCall(userInfo) {
-            window.webkit.messageHandlers.nativeOnCall.postMessage(userInfo);
         }
 
         function classifyImage(uuid, imageData) {
@@ -50,7 +106,7 @@
                 .then((ret) => {
                     // debugLog("_callClassify2");
                     debugLog(ret);
-                    nativeOnCall({ uuid: uuid, result: ret });
+                    nativeOnCall(_nativeOnCall_updateSingleClassifyComplete,{ uuid: uuid, result: ret });
                 })
                 .catch((error) => {
                     // debugLog("catch");
@@ -97,12 +153,12 @@
             debugLog('on load');
         };
     </script>
-    <script>
+    <!-- <script>
         setTimeout(() => {
             debugLog('time out');
             classifyImage('uuid', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///+ZmZmOUEqyAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACusAAArrAYKLDVoAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjAvMTIGkKG+AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAB1JREFUCJljONjA8LiBoZyBwY6BQQZMAtlAkYMNAF1fBs/zPvcnAAAAAElFTkSuQmCC');
         }, 1000);
-    </script>
+    </script> -->
     <title>NSFWJS</title>
 </head>
 

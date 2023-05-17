@@ -8,6 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    enum Status {
+        case initial
+        case idel
+        
+    }
     ///
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
@@ -15,6 +20,7 @@ class ViewController: UIViewController {
         label.text = "点击屏幕空白，查看打印日志"
         label.textColor = .black
         label.numberOfLines = 0
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -41,7 +47,8 @@ class ViewController: UIViewController {
     }
     
     func test() {
-        guard let img = UIImage.init(named: "SCR-20230507-kitz"),
+        
+        guard let img = UIImage.init(named: "test0"),
               let img2 = UIImage.init(named: "test1"),
               let img3 = UIImage.init(named: "test2") else {
             return
